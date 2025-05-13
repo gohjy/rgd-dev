@@ -30,6 +30,7 @@
 }
 
 .feature-container {
+    height: 48.75vmin; /* Fallback: 75% of .main-display height */
     max-height: 75%;
     max-width: 100%;
     /* height: 700px; /* If image does not load, default */
