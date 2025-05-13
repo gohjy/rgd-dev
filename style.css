@@ -364,3 +364,7 @@ body {
 #warning-banner[data-loc="unknown"] > #file-loc-indicator::after {
     content: "Unknown";
 }
+
+#file-loc-indicator::after {
+    font-size: inherit;
+}
