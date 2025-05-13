@@ -32,7 +32,7 @@
 .feature-container {
     max-height: 75%;
     max-width: 100%;
-    height: 700px; /* If image does not load, default */
+    /* height: 700px; /* If image does not load, default */
     aspect-ratio: 16 / 9;
     background-color: #000000;
     color: #ffffff;
