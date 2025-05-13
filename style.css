@@ -268,6 +268,7 @@ body {
     }
 }
 
+/*
  .watermark {
     position: fixed;
     bottom: 10px;
@@ -291,18 +292,70 @@ body {
     border-radius: 15%;
     border: 5px;
 }
-
+*/
 
 #warning-banner {
-    position: fixed;
+    position: sticky;
     bottom: 0;
     left: 0;
     width: 100%;
     text-align: center;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#disclaimer {
     background: yellow;
     color: black;
+    width: 100%;
+    text-transform: uppercase;
+    overflow-x: auto;
+}
+
+#file-loc-indicator {
+    overflow-x: auto;
+}
+
+#warning-banner[data-loc="gh-pages"] > #file-loc-indicator {
+    background: #D0D0D0;
+    color: black;
+}
+
+#warning-banner[data-loc="gh-pages"] > #file-loc-indicator::after {
+    content: "GitHub Pages";
+}
+
+#warning-banner[data-loc="local"] > #file-loc-indicator {
+    background: #3939FF;
+    color: #ffffff;
+}
+
+#warning-banner[data-loc="local"] > #file-loc-indicator::after {
+    content: "Local";
+}
+
+#warning-banner[data-loc="netlify-test"] > #file-loc-indicator {
+    background: #22DDDD;
+    color: black;
+}
+
+#warning-banner[data-loc="netlify-test"] > #file-loc-indicator::after {
+    content: "Netlify Testing";
+}
+
+#warning-banner[data-loc="netlify-prod"] {
+    display: none;
+}
+
+#warning-banner[data-loc="netlify-prod"] > #file-loc-indicator::after {
+    content: "Netlify Production";
+}
+
+#warning-banner[data-loc="unknown"] > #file-loc-indicator {
+    background: #000000;
+    color: #ffffff;
+}
+
+#warning-banner[data-loc="unknown"] > #file-loc-indicator::after {
+    content: "Unknown";
 }
