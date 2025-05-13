@@ -29,31 +29,42 @@
     margin-top: 10px;
 }
 
-#project-display > * > .feature-container {
+.feature-container {
     max-height: 75%;
     max-width: 100%;
     aspect-ratio: 16 / 9;
     background-color: #000000;
-
-    border-radius: 4px;
+    color: #ffffff;
 
     position: relative;
 }
 
-#project-display > * > .feature-container > .slide {
+.feature-container > .slide-container {
     width: 100%;
     height: 100%;
-    border-radius: 4px;
+    background: transparent;
+}
+
+.feature-container > .slide-container > .slide {
+    width: 100%;
+    height: 100%;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-color: #000000;
+    text-align: center;
 }
 
-#project-display > * > .feature-container > .slide > img {
+.feature-container > .slide-container > .slide > img {
     aspect-ratio: auto !important;
     max-width: 100%;
     max-height: 100%;
+}
+
+.slide:not([data-display]) {
+    display: none !important;
 }
 
 .feat-control-left, .feat-control-right {
@@ -81,4 +92,82 @@
 
 .feat-control-right {
     right: 10px;
+}
+
+.slide > .caption {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: left;
+    padding: 5px;
+}
+
+.slide > .caption.caption:not(.caption-screen) > .caption-text {
+    /* Text effect via https://stackoverflow.com/a/37832318 */
+    background-image: linear-gradient(to right, #FFFFFF, 30%, rgba(255, 255, 255, 0));
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.slide > .caption.caption:not(.caption-screen) > .caption-text br {
+    display: none;
+}
+
+.slide > .caption:not(.caption-screen) > .caption-text {
+    /* MDN for line-clamp / https://albertwalicki.com/learn/solutions/how-to-limit-text-to-n-lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    position: relative;
+}
+/*
+.slide > .caption > .caption-text::first-line {
+    color: #FFFFFF !important;
+}*/
+
+:is(.slide > .caption:not(.caption-screen) > .caption-text > .read-more, .slide > .caption.caption-screen > .caption-text > .close-capt-screen) {
+    text-transform: uppercase;
+    display: inline;
+    padding: 1px 2px;
+    border-radius: 2px;
+    border: 1px solid;
+    font-size: 0.7em;
+    vertical-align: middle;
+
+    cursor: pointer;
+}
+
+.slide > .caption:not(.caption-screen) > .caption-text > .read-more {
+    background-color:rgba(0, 0, 0, 0.8);
+    color:#ffffff;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+/* .slide > .caption:not(.caption-screen) > .caption-text:not(.overflowed) > .read-more {
+    display: none;
+} */
+
+.slide > .caption.caption-screen > .caption-text > .close-capt-screen {
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#ffffff;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+}
+
+/* .slide > .caption:.caption-screen > .caption-text:not(.overflowed) > .close-capt-screen {
+    display: none;
+} */
+
+.slide > .caption.caption-screen {
+    height: 100%;
+    overflow-y: auto;
 }
