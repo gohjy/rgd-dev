@@ -29,7 +29,7 @@ html {
     z-index: 1000;
 }
  .navbar .logo {
-    font-size: 1.5em;
+    font-size: min(1.5em, 6.5vw);
     font-weight: bold;
 }
 .navbar .links {
@@ -248,6 +248,7 @@ body {
 .top-offset > h1 {
     margin: 0;
     padding: 0 10px;
+    font-size: min(2em, 8.5vw);
 }
 
 
