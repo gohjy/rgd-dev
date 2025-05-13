@@ -1,3 +1,11 @@
+:root {
+    --nav-height: 50px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 html {
      font-family: "Ubuntu", sans-serif;
      font-weight: 450;
@@ -6,11 +14,12 @@ html {
     background-color: rgb(200, 75, 255);
 }
  .navbar {
-    position: fixed;
+    position: sticky;
     top: 0;
     right: 0;
     left: 0;
-    width: 99.2%;
+    width: 100%;
+    height: var(--nav-height);
     background-color: #333;
     color: white;
     padding: 10px 20px;
@@ -37,15 +46,228 @@ html {
 }
 body {
     margin: 0;
-    padding-top: 50px;
+    padding: 0;
  }
- .logo-container {
+
+
+ /* LOGO */
+/* @keyframes main-logo-box-anim-closing {
+    0%, 1% {
+        height: 120px;
+    }
+
+    66% {
+        height: var(--nav-height);
+    }
+
+    100% {
+        height: var(--nav-height);
+    }
+}
+@keyframes main-logo-box-anim-opening {
+    0%, 1% {
+        height: var(--nav-height);
+    }
+
+    66% {
+        height: 120px;
+    }
+
+    100% {
+        height: 120px;
+    }
+}
+
+@keyframes logo-pic-anim-opening {
+    0%, 1% {
+        height: 100px;
+        opacity: 0 !important;
+    }
+
+    66%, 70% {
+        opacity: 0;
+        height: 100px;
+        z-index: 9999;
+    }
+
+    100% {
+        opacity: 1;
+        height: 100px;
+        z-index: 9999;
+    }
+}
+
+@keyframes logo-pic-anim-closing {
+    0%, 1% {
+        height: 100px;
+        opactiy: 1 !important;
+    }
+
+    66%, 70% {
+        height: calc(var(--nav-height) - 20px);
+        z-index: 9000;
+        opacity: 1;
+    }
+    
+    100% {
+        height: calc(var(--nav-height) - 20px);
+        z-index: 9000;
+        opacity: 0;
+    }
+}
+
+@keyframes logo-text-anim-opening {
+    0%, 1% {
+        display: auto;
+        height: calc(var(--nav-height) - 20px);
+        opactiy: 1 !important;
+    }
+
+    66%, 70% {
+        display: auto;
+        height: 100px;
+        z-index: 9000;
+        opacity: 1;
+    }
+    
+    100% {
+        height: 100px;
+        z-index: 9000;
+        opacity: 0;
+    }
+}
+
+@keyframes logo-text-anim-closing {
+    0%, 1% {
+        display: none;
+        height: 100px;
+        opacity: 0 !important;
+    }
+
+    66%, 70% {
+        height: calc(var(--nav-height) - 20px);
+        z-index: 9999;
+        opacity: 0;
+    }
+
+    100% {
+        display: auto;
+        height: calc(var(--nav-height) - 20px);
+        z-index: 9999;
+        opacity: 1;
+    }
+} */
+
+
+#logo {
+    box-sizing: border-box !important;
+    position: fixed;
+    top: 0;
+    right: 10px;
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+    width: 120px;
+    z-index: 9999;
+    border-radius: 20px;
+    border: 10px solid #333333;
+    border-top: none;
+    margin-top: 10px;
+    background-color: #333333;
+
+    transition: height 1.3s;
+}
+
+
+#logo:hover {
+    height: 110px;
+    /* animation: 1.3s linear main-logo-box-anim-opening; */
+}
+
+#logo:not(:hover) {
+    height: calc(var(--nav-height) - 10px);
+    /* animation: 1.3s linear main-logo-box-anim-closing; */
+}
+
+#logo-pic {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    position: absolute;
+    transition: opacity 1.3s;
+}
+
+#logo:not(:hover)> #logo-pic { opacity: 0; }
+
+/*
+#logo.open > #logo-pic { animation: 1.3s linear logo-pic-anim-opening; opacity: 1; }
+#logo.closed > #logo-pic { animation: 1.3s linear logo-pic-anim-closing; opacity: 0; }
+*/
+#logo-text {
+    background-image: linear-gradient(to bottom, #6666FF, rgb(200, 75, 255));
+    text-align: center;
+    
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    margin: 20px;
- }
+
+    color: #FFFFFF;
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    transition: opacity 1.3s;
+}
+
+#logo:hover > #logo-text { opacity: 0; }
+
+
+
+
+/*
+#logo.open > #logo-text { animation: 1.3s linear logo-text-anim-opening; opacity: 0; }
+#logo.closed > #logo-text { animation: 1.3s linear logo-text-anim-closing; opacity: 1; }
+*/
+
+.top-offset {
+    height: var(--nav-height);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-offset > h1 {
+    margin: 0;
+    padding: 0 10px;
+}
+
+
+@media all and (max-width: 510px) {
+    .top-offset {
+        position: relative;
+        justify-content: left;
+        height: var(--nav-height);
+        margin-bottom: 10px;
+    }
+    
+    #logo {
+        position: fixed;
+        top: var(--nav-height);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-top: 0;
+    }
+}
+
  .watermark {
     position: fixed;
     bottom: 10px;
