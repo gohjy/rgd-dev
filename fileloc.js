@@ -1,6 +1,6 @@
 let fileLoc;
 
-if (location.origin === "file://") {
+if (location.origin === "file://" || (location.origin.indexOf("localhost") > -1 && location.origin.indexOf(".") === -1) || location.origin.match(/^https?\:\/\/127\.0\.0\.1(\:\d{1,4})?$/)) {
     fileLoc = "local";
 } else if (location.hostname.toLowerCase().includes(".github.io")) {
     fileLoc = "gh-pages";

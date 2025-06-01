@@ -33,10 +33,12 @@ for (let holder of allHolders) {
     }
     
     if (slides.length > 1) {
-        for (let [dir, char] of [["left","<"],["right",">"]]) {
+        for (let [dir, char] of [["right",">"],["left","<"]]) {
+            // Right first means that left ends up first in the DOM tree, allowing for tab navigation
             let button = document.createElement("div");
             button.classList.add(`feat-control-${dir}`);
             button.textContent = char;
+            button.setAttribute("tabindex", "0")
             holder.prepend(button);
             button.addEventListener("click", function() {
                 cycleSlides(holder, dir==="right");
@@ -83,15 +85,32 @@ function checkOverflow() {
                 r.textContent = "Close";
                 r.classList.remove("read-more");
                 r.classList.add("close-capt-screen");
+                let linkElemList = Array.from(r.parentElement.querySelectorAll(":scope a"));
+                for (let linkElem of linkElemList) {
+                    linkElem.setAttribute("tabindex", "0");
+                }
             } else if (r.classList.contains("close-capt-screen")) {
                 r.parentElement.parentElement.classList.remove("caption-screen");
                 r.textContent = "Expand";
                 r.classList.remove("close-capt-screen");
                 r.classList.add("read-more");
+                let linkElemList = Array.from(r.parentElement.querySelectorAll(":scope a"));
+                for (let linkElem of linkElemList) {
+                    linkElem.setAttribute("tabindex", "-1");
+                }
+            }
+        });
+        r.addEventListener("keyup", function(ev) {
+            if (ev.key === "Enter") {
+                r.click();
             }
         });
         r.textContent = "Expand";
+        r.setAttribute("tabindex", "0");
     }
 }
 
 checkOverflow(); 
+let rm = document.querySelector("[data-display] .caption-text .read-more");
+rm.click();
+rm.click();

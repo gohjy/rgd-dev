@@ -1,370 +1,369 @@
 :root {
-    --nav-height: 50px;
+--nav-height: 50px;
 }
 
+/* Some sensible defaults */
 * {
-    box-sizing: border-box;
+box-sizing: border-box;
 }
+.bold { font-weight: bold; }
+.italic { font-style: italic; }
+.uline { text-decoration-line: underline; }
+.small { font-size: 0.8em; }
 
 html {
-     font-family: "Ubuntu", sans-serif;
-     font-weight: 450;
-     font-style: normal;
-    color: #000000;
-    background-color: rgb(200, 75, 255);
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 450;
+    font-style: normal;
+color: #000000;
+background-color: rgb(200, 75, 255);
 }
- .navbar {
-    position: sticky;
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    height: var(--nav-height);
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-}
- .navbar .logo {
-    font-size: min(1.5em, 6.5vw);
-    font-weight: bold;
+.navbar {
+position: sticky;
+top: 0;
+right: 0;
+left: 0;
+width: 100%;
+height: var(--nav-height);
+background-color: #333;
+color: white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 1000;
 }
 .navbar .links {
-    display: flex;
-    gap: 15px;
-}
-.navbar a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-}
-.navbar a:hover {
-    text-decoration: underline;
-}
-body {
-    margin: 0;
-    padding: 0;
- }
+display: flex;
+justify-content: flex-end;
+align-items: center;
+gap: 15px;
 
+width: calc(100% - 120px);
+overflow-x: auto;
+height: 100%;
 
- /* LOGO */
-/* @keyframes main-logo-box-anim-closing {
-    0%, 1% {
-        height: 120px;
-    }
+float: right;
 
-    66% {
-        height: var(--nav-height);
-    }
+white-space: nowrap;
 
-    100% {
-        height: var(--nav-height);
-    }
-}
-@keyframes main-logo-box-anim-opening {
-    0%, 1% {
-        height: var(--nav-height);
-    }
+font-weight: lighter;
 
-    66% {
-        height: 120px;
-    }
-
-    100% {
-        height: 120px;
-    }
+padding-right: 7.5px;
 }
 
-@keyframes logo-pic-anim-opening {
-    0%, 1% {
-        height: 100px;
-        opacity: 0 !important;
-    }
-
-    66%, 70% {
-        opacity: 0;
-        height: 100px;
-        z-index: 9999;
-    }
-
-    100% {
-        opacity: 1;
-        height: 100px;
-        z-index: 9999;
-    }
+.links-sizing {
+display: none;
 }
 
-@keyframes logo-pic-anim-closing {
-    0%, 1% {
-        height: 100px;
-        opactiy: 1 !important;
-    }
-
-    66%, 70% {
-        height: calc(var(--nav-height) - 20px);
-        z-index: 9000;
-        opacity: 1;
-    }
-    
-    100% {
-        height: calc(var(--nav-height) - 20px);
-        z-index: 9000;
-        opacity: 0;
-    }
-}
-
-@keyframes logo-text-anim-opening {
-    0%, 1% {
-        display: auto;
-        height: calc(var(--nav-height) - 20px);
-        opactiy: 1 !important;
-    }
-
-    66%, 70% {
-        display: auto;
-        height: 100px;
-        z-index: 9000;
-        opacity: 1;
-    }
-    
-    100% {
-        height: 100px;
-        z-index: 9000;
-        opacity: 0;
-    }
-}
-
-@keyframes logo-text-anim-closing {
-    0%, 1% {
-        display: none;
-        height: 100px;
-        opacity: 0 !important;
-    }
-
-    66%, 70% {
-        height: calc(var(--nav-height) - 20px);
-        z-index: 9999;
-        opacity: 0;
-    }
-
-    100% {
-        display: auto;
-        height: calc(var(--nav-height) - 20px);
-        z-index: 9999;
-        opacity: 1;
-    }
-} */
-
-
-#logo {
-    box-sizing: border-box !important;
+@media screen and (max-width: 768px) {
+.navbar > .links {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    white-space: nowrap;
+    flex-direction: column;
     position: fixed;
     top: 0;
-    right: 10px;
+    right: 0;
+    gap: 0;
+    height: var(--nav-height);
+    width: unset;
+    overflow-y: clip;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    text-align: left;
 
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-
-    width: 120px;
-    z-index: 9999;
-    border-radius: 20px;
-    border: 10px solid #333333;
-    border-top: none;
-    margin-top: 10px;
     background-color: #333333;
+    background-clip: content-box;
+}
 
-    transition: height 1.3s;
+.links-sizing {
+    width: 100%;
+    height: var(--nav-height);
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: #333333;
+    z-index: 101;
+}
+
+.links-sizing:is(:hover, :focus-within) {
+    background-color: #444444;
+}
+
+.links > :is(span, a), .links-sizing::before {
+    min-height: var(--nav-height);
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10px;
+    text-align: left;
+    box-sizing: border-box;     
+}
+
+.links-sizing::before {
+    content: "Links";
+    font-weight: bold;
+    z-index: 102;
+}
+
+.links > :is(span, a) {
+    border-top: 1px solid white;
+}
+
+.navbar > .links:is(:hover, :focus-within) {
+    height: auto;
+    outline: none;
+}
+
+.links-sizing::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: var(--nav-height);
+    width: var(--nav-height);
+    background-image: url(./down-arrow.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    filter: brightness(100);
+    z-index: 102;
+}
+
+.navbar > .links:is(:hover, :focus-within) > :is(span, a):is(:hover, :focus-within) {
+    background-color: #444444;
+}
 }
 
 
-#logo:hover {
-    height: 110px;
-    /* animation: 1.3s linear main-logo-box-anim-opening; */
+.navbar a {
+color: white;
+text-decoration: none;
+margin: 0;
 }
 
-#logo:not(:hover) {
-    height: calc(var(--nav-height) - 10px);
-    /* animation: 1.3s linear main-logo-box-anim-closing; */
+.navbar > .links > :is(span, a) {
+height: 100%;
+display: flex;
+align-items: center;
+/* justify-content: center;
+padding: 0 7.5px;
+margin: 0 -7.5px; */
+}
+
+.navbar > .links:is(:hover, :focus-within) > :is(span, a):is(:hover, :focus-within) {
+text-decoration: underline;
+outline: none;
+}
+
+.navbar > .links:focus-within > :is(span, a):focus-within {
+background-color: #444444;
+}
+
+body {
+margin: 0;
+padding: 0;
+}
+
+#logo {
+box-sizing: border-box !important;
+position: fixed;
+top: 0;
+right: 10px;
+
+display: flex;
+align-content: center;
+justify-content: center;
+align-items: center;
+
+width: 120px;
+z-index: 9999;
+border-radius: 20px;
+border: 10px solid #333333;
+border-top: none;
+margin-top: 10px;
+background-color: #333333;
+
+transition: height 1.3s;
+
+font-size: 0.8em;
+}
+
+
+#logo:is(:hover, :focus-within) {
+height: calc(110px + 2lh + 5px);
+outline: none;
+}
+
+#logo:not(:is(:hover, :focus-within)) {
+height: calc(var(--nav-height) - 10px);
 }
 
 #logo-pic {
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
-    position: absolute;
-    transition: opacity 1.3s;
+position: absolute;
+height: 100%;
+width: 100%;
+transition: opacity 1.3s, height 1.3s;
+background-color: #333333;
+border: 1px solid white;
+border-radius: 10px;
 }
 
-#logo:not(:hover)> #logo-pic { opacity: 0; }
 
-/*
-#logo.open > #logo-pic { animation: 1.3s linear logo-pic-anim-opening; opacity: 1; }
-#logo.closed > #logo-pic { animation: 1.3s linear logo-pic-anim-closing; opacity: 0; }
-*/
+#logo-pic > #logo-pic-img {
+height: calc(100% - 2lh - 5px);
+width: 100%;
+border-radius: 10px;
+position: absolute;
+top: 0;
+left: 0;
+transition: opacity 1.3s, height 1.3s;
+}
+
+#logo-pic > #logo-pic-capt {
+position: absolute;
+bottom: 2px;
+left: 0;
+margin-bottom: 2px;
+width: 100%;
+text-align: center;
+color: white;
+}
+
+#logo:not(:is(:hover, :focus-within))> #logo-pic { opacity: 0; }
+
 #logo-text {
-    background-image: linear-gradient(to bottom, #6666FF, rgb(200, 75, 255));
-    text-align: center;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    color: #FFFFFF;
-    height: 100%;
-    border-radius: 10px;
-    border: 1px solid;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-
-    transition: opacity 1.3s;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+width: 100px;
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+transition: height 1.3s;
+font-size: 1rem;
 }
 
-#logo:hover > #logo-text { opacity: 0; }
+#logo-text > #logo-text-content {
+background-image: linear-gradient(to bottom, #6666FF, rgb(200, 75, 255));
+background-color: transparent;
+text-align: center;
 
+display: flex;
+justify-content: center;
+align-items: center;
 
+color: #FFFFFF;
+height: 100%;
+border-radius: 10px;
+border: 1px solid;
 
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+
+transition: none;
+}
 
 /*
-#logo.open > #logo-text { animation: 1.3s linear logo-text-anim-opening; opacity: 0; }
-#logo.closed > #logo-text { animation: 1.3s linear logo-text-anim-closing; opacity: 1; }
-*/
+#logo:hover > #logo-text { height: 100%; }
+#logo:hover > #logo-text > #logo-text-content { opacity: 1;background-image: linear-gradient(to bottom, transparent, transparent);  } */
+
+
 
 .top-offset {
-    height: var(--nav-height);
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+text-align: center;
 }
 
 .top-offset > h1 {
-    margin: 0;
-    padding: 0 10px;
-    font-size: min(2em, 8.5vw);
+font-size: 2em;
 }
 
-
-@media all and (max-width: 510px) {
-    .top-offset {
-        position: relative;
-        justify-content: left;
-        height: var(--nav-height);
-        margin-bottom: 10px;
-    }
-    
-    #logo {
-        position: fixed;
-        top: var(--nav-height);
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        margin-top: 0;
-    }
+#logo {
+position: fixed;
+top: 0;
+left: 0;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+border-top: unset;
 }
 
-
-
-
-
-/*
- .watermark {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.75);
-    display: flex;
-    align-items: center;
-    z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.15);
-    padding: 5px;
-    margin: 5px;
-    margin-right: -100px;
-    border-radius: 10px;
+.navbar > .logo {
+font-size: 0;
 }
-.watermark img {
-    width: 20px;
-    height: 20px;
-    margin-left: 5px;
-    opacity: 0.75;
-    border-radius: 15%;
-    border: 5px;
-}
-*/
 
 #warning-banner {
-    position: sticky;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    -webkit-user-select: none;
-    user-select: none;
+position: sticky;
+bottom: 0;
+left: 0;
+width: 100%;
+text-align: center;
+-webkit-user-select: none;
+user-select: none;
 }
 
+
+/* Disclaimer & File loc indicator */
 #disclaimer {
-    background: yellow;
-    color: black;
-    width: 100%;
-    text-transform: uppercase;
-    overflow-x: auto;
+background: yellow;
+color: black;
+width: 100%;
+text-transform: uppercase;
+overflow-x: auto;
 }
 
 #file-loc-indicator {
-    overflow-x: auto;
+overflow-x: auto;
 }
 
 #warning-banner[data-loc="gh-pages"] > #file-loc-indicator {
-    background: #D0D0D0;
-    color: black;
+background: #D0D0D0;
+color: black;
 }
 
 #warning-banner[data-loc="gh-pages"] > #file-loc-indicator::after {
-    content: "GitHub Pages";
+content: "GitHub Pages";
 }
 
 #warning-banner[data-loc="local"] > #file-loc-indicator {
-    background: #3939FF;
-    color: #ffffff;
+background: #3939FF;
+color: #ffffff;
 }
 
 #warning-banner[data-loc="local"] > #file-loc-indicator::after {
-    content: "Local";
+content: "Local";
 }
 
 #warning-banner[data-loc="netlify-test"] > #file-loc-indicator {
-    background: #22DDDD;
-    color: black;
+background: #22DDDD;
+color: black;
 }
 
 #warning-banner[data-loc="netlify-test"] > #file-loc-indicator::after {
-    content: "Netlify Testing";
+content: "Netlify Testing";
 }
 
 #warning-banner[data-loc="netlify-prod"] {
-    display: none;
+display: none;
 }
 
 #warning-banner[data-loc="netlify-prod"] > #file-loc-indicator::after {
-    content: "Netlify Production";
+content: "Netlify Production";
 }
 
 #warning-banner[data-loc="unknown"] > #file-loc-indicator {
-    background: #000000;
-    color: #ffffff;
+background: #000000;
+color: #ffffff;
 }
 
 #warning-banner[data-loc="unknown"] > #file-loc-indicator::after {
-    content: "Unknown";
+content: "Unknown";
 }
 
 #file-loc-indicator::after {
-    font-size: inherit;
+font-size: inherit;
 }
