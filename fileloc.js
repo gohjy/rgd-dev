@@ -15,3 +15,7 @@ if (location.origin === "file://" || (location.origin.indexOf("localhost") > -1 
 }
 
 document.querySelector("#warning-banner").setAttribute("data-loc", fileLoc);
+
+if (new URL(location.href).searchParams.get("nofileloc") !== null) {
+    document.querySelector("#warning-banner").style.display = "none !important";
+}
